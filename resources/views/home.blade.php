@@ -24,24 +24,10 @@
     @else
 
     <div class="container">
-    
-        <div class="card">
-            <h2>Login</h2>
-            <form action="/login" method="POST">
-                @csrf
-                <input type="text" placeholder="email" name="login_email">
-                <input type="password" placeholder="password" name="login_password">
-                <button>Login</button>
-            </form>
-            
-        </div>
-
-        <div class="btn-group">
-            <span>New here?</span>
-            <a href="/register"><button>Register</button></a>
-        </div>
-
+        <p>Typen wie dich können wir hier nicht besonders gut leiden!</p>
+        <a href="/login"><button>Go to Login</button></a>
     </div>
+    
 
     @endauth
 
