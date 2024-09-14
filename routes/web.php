@@ -9,7 +9,7 @@ use App\Models\User;
 Route::get('/', function () {
     $posts = [];
     if (Auth::check()) {
-        $posts = Auth::user()->posts()->latest()->get();
+        $posts = Auth::user()->posts()->orderBy('id', 'asc')->get();
     }
     return view('home', ['posts' => $posts]);
 });
@@ -29,4 +29,6 @@ Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
 
 Route::post('/create-post', [PostController::class, 'createPost']);
+Route::get('/edit-post/{post}', [PostController::class, 'showEditPost']);
+Route::put('/edit-post/{post}', [PostController::class, 'updatePost']);
 

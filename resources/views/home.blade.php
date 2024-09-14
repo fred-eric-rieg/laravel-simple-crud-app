@@ -38,7 +38,8 @@
 
                 @foreach ($posts as $post)
                     <div class="card">
-                        <div class="title">{{ $post['title'] }} <form action="/delete-post/{{ $post->id }}" method="post">
+                        <div class="title">{{ $post['title'] }}
+                            <form action="/delete-post/{{ $post->id }}" method="post">
                                 @csrf
                                 @method('DELETE')
                                 <button>Delete</button>
