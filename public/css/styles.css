@@ -24,6 +24,10 @@ body, html {
     box-sizing: border-box;
 }
 
+.left {
+    align-items: flex-start;
+}
+
 .card {
     display: flex;
     flex-direction: column;

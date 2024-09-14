@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        <div class="vertical-container">
+        <div class="vertical-container left">
             <h1>Your Posts</h1>
             
             @foreach ($posts as $post)
