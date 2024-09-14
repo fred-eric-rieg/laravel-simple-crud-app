@@ -10,7 +10,7 @@
 </head>
 <body>
     
-    <div class="container">
+    <div class="vertical-container">
         <div class="card">
             <h2>Register</h2>
             <form action="/register" method="POST">

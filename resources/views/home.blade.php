@@ -10,20 +10,45 @@
 <body>
 
     @auth
-    <div class="container">
-        <div class="card">
-            <p>Congrats you are logged in</p>
-            <form action="/logout" method="POST">
-                @csrf
-                <button>Logout</button>
-            </form>
+    <div class="horizontal-container">
+        <div class="vertical-container">
+            <div class="card">
+                <p>Congrats you are logged in</p>
+                <form action="/logout" method="POST">
+                    @csrf
+                    <button>Logout</button>
+                </form>
+            </div>
+    
+            <div class="card">
+                <p>Create a New Post</p>
+                <form action="/create-post" method="POST">
+                    @csrf
+                    <input type="text" name="title" placeholder="title">
+                    <textarea name="content" placeholder="content"></textarea>
+                    <button>Post</button>
+                </form>
+            </div>
         </div>
+
+        <div class="vertical-container">
+            <h1>Your Posts</h1>
+            
+            @foreach ($posts as $post)
+            <div class="card">
+                <h2>{{$post['title']}}</h2>
+                <p>{{$post['content']}}</p>
+            </div>
+            @endforeach
+
+        </div>
+       
     </div>
     
 
     @else
 
-    <div class="container">
+    <div class="vertical-container">
         <p>Typen wie dich können wir hier nicht besonders gut leiden!</p>
         <a href="/login"><button>Go to Login</button></a>
     </div>

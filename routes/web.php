@@ -1,10 +1,15 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
+use App\Models\Post;
+use Illuminate\Support\Facades\Auth;
+use App\Models\User;
 
 Route::get('/', function () {
-    return view('home');
+    $posts = Post::where('user_id', Auth::id())->get();
+    return view('home', ['posts' => $posts]);
 });
 
 Route::get('/register', function () {
@@ -12,11 +17,14 @@ Route::get('/register', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    $users = User::all();
+    return view('login', ['users' => $users]);
 });
 
 
 Route::post('/register', [UserController::class, 'register']);
 Route::post('/login', [UserController::class, 'login']);
 Route::post('/logout', [UserController::class, 'logout']);
+
+Route::post('/create-post', [PostController::class, 'createPost']);
 

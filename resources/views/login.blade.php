@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <div class="container">
+    <div class="vertical-container">
     
         <div class="card">
             <h2>Login</h2>
@@ -27,6 +27,14 @@
             <span>New here?</span>
             <a href="/register"><button>Register</button></a>
         </div>
+
+        @foreach ($users as $user)
+            <div>
+                <p>{{$user->email}}</p>
+            </div>
+            
+
+        @endforeach
 
     </div>
     
