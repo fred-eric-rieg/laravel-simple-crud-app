@@ -1,7 +1,8 @@
 FROM php:8.3-fpm
 
-ARG user
-ARG uid
+# Define the hardcoded user and UID
+ENV USER=myuser
+ENV UID=1000
 
 RUN set -eux; \
     apt-get update; \
