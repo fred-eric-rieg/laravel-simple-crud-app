@@ -4,31 +4,26 @@ FROM php:8.3-fpm
 ENV USER=myuser
 ENV UID=1000
 
-RUN set -eux; \
-    apt-get update; \
-    apt-get upgrade -y; \
-    apt-get install -y --no-install-recommends \
-            curl \
-            libmemcached-dev \
-            libz-dev \
-            libpq-dev \
-            libjpeg-dev \
-            libpng-dev \
-            libfreetype6-dev \
-            libssl-dev \
-            libwebp-dev \
-            libxpm-dev \
-            libmcrypt-dev \
-            libonig-dev; \
-    rm -rf /var/lib/apt/lists/*
-RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
+# Install necessary system dependencies
+RUN apt-get update && apt-get install -y \
+    libzip-dev \
+    unzip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+# Install PHP extensions
+RUN docker-php-ext-install zip pdo_mysql mbstring exif pcntl bcmath gd
 
+# Install Composer
+COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+
+# Set working directory
 WORKDIR /var/www/html
 
+# Copy application code
 COPY . /var/www/html
 
+# Install PHP dependencies
 RUN composer install
 
 RUN useradd -G www-data,root -u ${UID} -d /home/${USER} ${USER}
