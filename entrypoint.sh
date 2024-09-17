@@ -1,4 +1,5 @@
-#!/bin/bash
+#!/bin/sh
+
 composer install
 
 php artisan migrate
