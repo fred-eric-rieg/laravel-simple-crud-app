@@ -23,13 +23,18 @@ RUN set -eux; \
     rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
-WORKDIR /usr/src/app
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-COPY . /usr/src/app
+WORKDIR /var/www/html
+
+COPY . /var/www/html
+
+RUN composer install
 
 RUN useradd -G www-data,root -u ${UID} -d /home/${USER} ${USER}
 RUN mkdir -p /home/${USER}/.composer && \
     chown -R ${USER}:${USER} /home/${USER} && \
-    chmod +x entrypoint.sh
+    chmod +x entrypoint.sh && \
+    chown -R ${USER}:${USER} /var/www/html/storage /var/www/html/bootstrap/cache
 
 USER ${USER}

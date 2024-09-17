@@ -3,9 +3,9 @@ services:
     container_name: laravel
     build: .
     volumes:
-      - laravel_base:/usr/src/app
-    expose:
-      - "4444"
+      - laravel_base:/var/www/html
+    ports:
+      - "8000:8000"
     networks:
       - server_default
 
