@@ -4,8 +4,16 @@ services:
     build: .
     volumes:
       - laravel_base:/usr/src/app
-
     expose:
       - "4444"
+    entrypoint: /usr/src/app/entrypoint.sh
     networks:
       - server_default
+
+volumes:
+  laravel_base:
+
+networks:
+    server_default:
+        name: server_default
+        external: true
