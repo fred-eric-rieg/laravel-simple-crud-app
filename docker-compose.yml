@@ -1,0 +1,11 @@
+services:
+  laravel:
+    container_name: laravel
+    build: .
+    volumes:
+      - laravel_base:/usr/src/app
+
+    expose:
+      - "4444"
+    networks:
+      - server_default
