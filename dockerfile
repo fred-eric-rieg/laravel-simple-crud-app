@@ -20,6 +20,9 @@ RUN set -eux; \
             libxpm-dev \
             libmcrypt-dev \
             libonig-dev \
+            libzip-dev \
+            zip \
+            unzip \
             git; \
     rm -rf /var/lib/apt/lists/*
 RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
