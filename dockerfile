@@ -27,11 +27,11 @@ WORKDIR /usr/src/app
 
 COPY . /usr/src/app
 
-RUN useradd -G www-data,root -u $uid -d /home/$user $user
-RUN mkdir -p /home/$user/.composer && \
-    chown -R $user:$user /home/$user && \
+RUN useradd -G www-data,root -u ${UID} -d /home/${USER} ${USER}
+RUN mkdir -p /home/${USER}/.composer && \
+    chown -R ${USER}:${USER} /home/${USER} && \
     chmod +x entrypoint.sh
 
-USER $user
+USER ${USER}
 
 ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]
