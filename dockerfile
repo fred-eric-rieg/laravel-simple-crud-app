@@ -33,5 +33,3 @@ RUN mkdir -p /home/${USER}/.composer && \
     chmod +x entrypoint.sh
 
 USER ${USER}
-
-ENTRYPOINT [ "/usr/src/app/entrypoint.sh" ]

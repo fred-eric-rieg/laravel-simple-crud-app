@@ -6,7 +6,6 @@ services:
       - laravel_base:/usr/src/app
     expose:
       - "4444"
-    entrypoint: /usr/src/app/entrypoint.sh
     networks:
       - server_default
 
